@@ -1,0 +1,51 @@
+/* ══════════════════════════════════════════════════
+   YAZZ — iPhone 15 · Temel Katman
+   Hedef: 393 × 852 CSS px
+   Dynamic Island: üst ~59 px · Home bar: alt ~34 px
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 430px) {
+
+  :root {
+    --sat: env(safe-area-inset-top,    0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left,   0px);
+    --sar: env(safe-area-inset-right,  0px);
+    --mp:  20px;   /* yatay sayfa kenar boşluğu */
+  }
+
+  *, *::before, *::after {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  html { overflow-x: hidden; }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100dvh;
+  }
+
+  /* Container: tam genişlik, yatay padding */
+  .ctr {
+    max-width: 100%;
+    padding: 0 var(--mp);
+  }
+
+  /* Bölüm dikey boşlukları */
+  .sec-pad { padding: 60px 0; }
+
+  /* Dokunma hedefleri — çift-tap zoom önleme */
+  .btn-p, .btn-o, button, [role="button"] {
+    touch-action: manipulation;
+  }
+
+  /* Butonlar: tam genişlik + ortalı */
+  .btn-p, .btn-o {
+    width: 100%;
+    justify-content: center;
+    min-height: 50px;
+    font-size: .82rem;
+  }
+}

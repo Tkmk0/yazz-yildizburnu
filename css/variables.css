@@ -1,0 +1,147 @@
+:root {
+
+  /* ─────────────────────────────────────────
+     BRAND COLOURS — legacy tokens (backwards compatible)
+  ───────────────────────────────────────── */
+  --primary:       #005b7f;   /* Petrol / Aegean teal */
+  --primary-dark:  #003d57;
+  --primary-light: #1a7a9e;
+
+  --secondary:     #C0C0C0;   /* Gümüş */
+  --accent:        #B8622E;   /* Terracotta — warm complement to teal */
+  --neutral:       #f5f5f5;   /* Warm off-white */
+  --warmth:        #FFA500;   /* Amber / vitray */
+
+  /* Teal aliases */
+  --teal:   var(--primary);
+  --teal-d: var(--primary-dark);
+  --teal-l: var(--primary-light);
+
+  /* Legacy tone palette */
+  --beige:   #F4EFE6;
+  --beige2:  #EDE7DA;
+  --cream:   #FAFAF6;
+  --deep:    #0F2218;
+  --deep2:   #1A3020;
+  --warm:    #C87D52;
+  --warm-l:  #E8A87C;
+  --sand:    #D8CFC4;
+  --silver:  #A8ACAF;
+
+
+  /* ─────────────────────────────────────────
+     PRIMARY COLOUR SCALE  (#005b7f Aegean teal)
+  ───────────────────────────────────────── */
+  --primary-50:  #e6f2f7;
+  --primary-100: #b3d9ea;
+  --primary-200: #80bfdc;
+  --primary-300: #4da5cf;
+  --primary-400: #268cb9;
+  --primary-500: #005b7f;   /* = --primary */
+  --primary-600: #004e6e;
+  --primary-700: #003d57;   /* = --primary-dark */
+  --primary-800: #002c3f;
+  --primary-900: #001a26;
+
+
+  /* ─────────────────────────────────────────
+     NEUTRAL SCALE  (warm cream → deep forest)
+  ───────────────────────────────────────── */
+  --neutral-50:  #fafaf6;   /* = --cream */
+  --neutral-100: #f4efe6;   /* = --beige */
+  --neutral-200: #ede7da;   /* = --beige2 */
+  --neutral-300: #d8cfc4;   /* = --sand */
+  --neutral-400: #bfb8b0;
+  --neutral-500: #a8acaf;   /* = --silver */
+  --neutral-600: #7a7d80;
+  --neutral-700: #4a4d50;
+  --neutral-800: #1a3020;   /* = --deep2 */
+  --neutral-900: #0f2218;   /* = --deep */
+
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY
+  ───────────────────────────────────────── */
+  --fd: 'Cormorant Garamond', Georgia, serif;   /* display / headlines */
+  --fs: 'Dancing Script', cursive;              /* script / signature */
+  --fb: 'Jost', system-ui, sans-serif;          /* body / UI */
+
+
+  /* ─────────────────────────────────────────
+     SHADOW SYSTEM  (warm-tinted, layered)
+  ───────────────────────────────────────── */
+  --shadow-sm:  0 1px 3px rgba(15, 34, 24, .10),
+                0 1px 2px rgba(15, 34, 24, .06);
+  --shadow-md:  0 4px 6px rgba(15, 34, 24, .08),
+                0 2px 4px rgba(15, 34, 24, .05);
+  --shadow-lg:  0 10px 20px rgba(15, 34, 24, .10),
+                0 4px 8px  rgba(15, 34, 24, .06);
+  --shadow-xl:  0 20px 40px rgba(15, 34, 24, .12),
+                0 8px 16px rgba(15, 34, 24, .07);
+  --shadow-2xl: 0 40px 80px rgba(15, 34, 24, .18),
+                0 16px 32px rgba(15, 34, 24, .10);
+
+
+  /* ─────────────────────────────────────────
+     SPACING SCALE  (4px base)
+  ───────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-7:   28px;
+  --space-8:   32px;
+  --space-9:   36px;
+  --space-10:  40px;
+  --space-11:  44px;
+  --space-12:  48px;
+  --space-13:  52px;
+  --space-14:  56px;
+  --space-15:  60px;
+  --space-16:  64px;
+  --space-17:  68px;
+  --space-18:  72px;
+  --space-19:  76px;
+  --space-20:  80px;
+
+
+  /* ─────────────────────────────────────────
+     Z-INDEX TOKENS
+  ───────────────────────────────────────── */
+  --z-base:    0;
+  --z-above:   10;
+  --z-nav:     100;
+  --z-overlay: 200;
+  --z-modal:   300;
+  --z-toast:   400;
+
+
+  /* ─────────────────────────────────────────
+     TRANSITION DURATIONS
+  ───────────────────────────────────────── */
+  --dur-fast:  150ms;
+  --dur-base:  300ms;
+  --dur-slow:  500ms;
+  --dur-enter: 700ms;
+
+
+  /* ─────────────────────────────────────────
+     EASING CURVES
+  ───────────────────────────────────────── */
+  --ease:     cubic-bezier(.16, 1, .3, 1);          /* spring / expressive */
+  --ease-out: cubic-bezier(.4, 0, .2, 1);           /* material / standard */
+
+
+  /* ─────────────────────────────────────────
+     BORDER RADIUS
+  ───────────────────────────────────────── */
+  --radius-sm:      4px;
+  --radius-md:      8px;
+  --radius-lg:      12px;
+  --radius-xl:      20px;
+  --radius-pill:    100px;
+  --radius-organic: clamp(80px, 14vw, 160px);
+
+}

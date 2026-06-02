@@ -1,0 +1,29 @@
+/* ══════════════════════════════════════════════════
+   YAZZ — iPhone 15 · Alıntı Bölümü
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 430px) {
+
+  .quote-sec { padding: 52px 0; }
+
+  /* Büyük dekoratif tırnak işaretleri — yer kaplar, gizle */
+  .quote-deco-l,
+  .quote-deco-r { display: none; }
+
+  .quote-inner {
+    max-width: 100%;
+    padding: 0 var(--mp);
+  }
+
+  /* Küçültülmüş ama okunabilir tipografi */
+  .quote-text {
+    font-size: clamp(1.5rem, 6.5vw, 2rem);
+    line-height: 1.38;
+  }
+
+  /* Yazar satırı */
+  .quote-author {
+    font-size: .68rem;
+    margin-top: 18px;
+  }
+}

@@ -1,0 +1,17 @@
+# Geliştirme araçları
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Zip arşivler
+*.zip
+
+# Ham fotoğraflar klasörü (deploy'a girmez)
+fotoğraflar/
+
+# Claude
+.claude/
+skills
+
+# PDF kaynaklar
+logo.pdf

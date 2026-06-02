@@ -1,0 +1,42 @@
+/* Google Fonts index.html'deki <link> tag'ı ile yükleniyor — burada @import yok */
+
+/* Bölüm başlık etiketleri */
+.sec-label {
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.sec-h {
+  font-family: var(--fd);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -.01em;
+}
+
+.sec-h em {
+  font-style: italic;
+  color: var(--primary);
+}
+
+.divider {
+  width: 44px;
+  height: 1.5px;
+  background: var(--primary);
+  margin: 24px 0;
+}
+
+.body-t {
+  font-size: clamp(.95rem, 1.4vw, 1.08rem);
+  line-height: 1.8;
+  font-weight: 300;
+  color: rgba(15, 34, 24, .72);
+}
+
+.body-t p + p {
+  margin-top: 16px;
+}

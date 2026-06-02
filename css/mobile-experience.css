@@ -1,0 +1,47 @@
+/* ══════════════════════════════════════════════════
+   YAZZ — iPhone 15 · Deneyim Bölümü
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 430px) {
+
+  /* ── Görsel + metin: tek sütun ── */
+  .exp-g {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  /* Görsel: yatay formata geç, sabit yükseklik */
+  .exp-img {
+    aspect-ratio: 4 / 3;
+    max-height: 260px;
+    border-radius: 14px 14px clamp(50px, 12vw, 80px) 14px;
+  }
+
+  /* Dönen rozet */
+  .exp-badge2 {
+    width: 76px;
+    height: 76px;
+    top: 14px;
+    right: 14px;
+  }
+  .exp-badge2 svg { width: 22px; height: 22px; }
+  .exp-badge2 .badge-t { font-size: .48rem; }
+
+  /* İstatistik kartları: 2 × 2 */
+  .stats-g {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .stat {
+    padding: 18px 14px;
+    border-radius: 10px;
+  }
+
+  .stat-n {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+
+  .stat-l { font-size: .64rem; }
+}

@@ -1,0 +1,81 @@
+/* ══════════════════════════════════════════════════
+   YAZZ — iPhone 15 · Hakkımızda Bölümü
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 430px) {
+
+  .about { overflow: hidden; }
+  .about-bgchar { display: none; }
+
+  /* Tek sütun düzen */
+  .about-g {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* ── Görsel blok ── */
+  .about-img-wrap {
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Dikey hap şeklinde çerçeve */
+  .about-img {
+    aspect-ratio: 3 / 4;
+    border-radius: clamp(80px, 20vw, 110px) clamp(80px, 20vw, 110px) 10px 10px;
+  }
+
+  /* Fırça dekor: hafif küçült */
+  .about-brush {
+    width: 100px;
+    bottom: -14px;
+    left: -18px;
+    opacity: .14;
+  }
+
+  /* "365 Gün" kartı — görsel altına, akış içinde */
+  .about-deco {
+    position: relative;
+    top: auto;
+    right: auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+    padding: 14px 20px;
+    width: 100%;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 16px rgba(0, 0, 0, .07);
+  }
+  .about-deco-n { font-size: 2rem; }
+  .about-deco-l { font-size: .58rem; text-align: left; margin-top: 0; }
+
+  /* ── Metin blok ── */
+  .sec-label { font-size: .62rem; }
+
+  /* Özellik kartları: 2 × 2 ızgara */
+  .about-feats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .feat {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 12px;
+    border-radius: 10px;
+    align-items: flex-start;
+  }
+
+  .feat-ic {
+    width: 28px;
+    height: 28px;
+    font-size: .8rem;
+  }
+
+  .feat-t strong { font-size: .74rem; }
+  .feat-t span   { font-size: .68rem; }
+}
