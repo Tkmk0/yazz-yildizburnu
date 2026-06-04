@@ -97,7 +97,8 @@ function setLang(l) {
     const v = el.getAttribute('data-' + l);
     if (!v) return;
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = v;
-    else el.innerHTML = v;
+    else if (el.dataset.html) el.innerHTML = v;
+    else el.textContent = v;
   });
   localStorage.setItem('yazz-lang', l);
 }
@@ -105,31 +106,12 @@ function setLang(l) {
 document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 setLang(lang);
 
-// 4. FORM
-document.getElementById('resForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-  const btn = this.querySelector('.fsub-btn');
-  const orig = btn.textContent;
-  btn.textContent = lang === 'tr' ? 'Gönderiliyor...' : 'Sending...';
-  btn.disabled = true;
-  btn.style.opacity = '.7';
-  setTimeout(() => {
-    btn.textContent = lang === 'tr' ? '✓ Rezervasyonunuz Alındı!' : '✓ Reservation Received!';
-    btn.style.background = '#16a34a';
-    btn.style.opacity = '1';
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.disabled = false;
-      btn.style.background = '';
-      this.reset();
-    }, 3000);
-  }, 1200);
-});
+// 4. MOUNTAIN SCENE — Three.js hero shader
+if (typeof initMountainScene === 'function') {
+  initMountainScene();
+}
 
-// 5. MIN DATE
-const dtIn = document.getElementById('dt');
-if (dtIn) {
-  const d = new Date();
-  d.setDate(d.getDate() + 1);
-  dtIn.min = d.toISOString().split('T')[0];
+// 5. REVIEW CARDS — 3D tilt
+if (typeof initReviewCards === 'function') {
+  initReviewCards();
 }

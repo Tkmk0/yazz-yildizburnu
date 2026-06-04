@@ -26,47 +26,6 @@
   /* Harita alanı */
   .map-ph { height: 150px; border-radius: 10px; }
 
-  /* ── Rezervasyon formu ── */
-  .rform {
-    padding: 22px 16px;
-    border-radius: 12px;
-  }
-
-  .ft { font-size: 1.5rem; }
-  .fsub-text { font-size: .76rem; margin-bottom: 20px; }
-
-  /* Satır içi grid kaldır — alt alta */
-  .frow { grid-template-columns: 1fr; gap: 0; }
-
-  .fg { margin-bottom: 14px; }
-
-  /* Input'lar: 16px zorunlu (iOS auto-zoom engeli) */
-  .fi, .fsel, .fta {
-    font-size: 16px;
-    padding: 14px 16px;
-    border-radius: 8px;
-    min-height: 50px;
-  }
-
-  .fta {
-    height: 80px;
-    min-height: 80px;
-  }
-
-  .fl { font-size: .62rem; }
-
-  .fsub-btn {
-    padding: 15px;
-    font-size: .78rem;
-    border-radius: 8px;
-    margin-top: 6px;
-  }
-
-  .wa-btn {
-    padding: 13px;
-    font-size: .74rem;
-    border-radius: 8px;
-  }
 
   /* ── Footer ── */
   .footer {

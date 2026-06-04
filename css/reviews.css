@@ -1,0 +1,59 @@
+/* ══════════════════════════════════════════════════
+   YAZZ — Misafir Yorumları Section
+   ══════════════════════════════════════════════════ */
+
+.reviews-sec {
+  position: relative;
+  overflow: hidden;
+  background: var(--deep);
+}
+
+/* Arka plan dekoratif yazı */
+.reviews-bgtxt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--fd);
+  font-size: clamp(80px, 16vw, 200px);
+  font-weight: 300;
+  letter-spacing: .04em;
+  color: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+/* Section başlık alanı */
+.reviews-sec .ctr:first-of-type {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.reviews-sec .sec-label {
+  color: var(--warm-l);
+}
+
+.reviews-sec .sec-h {
+  color: var(--cream);
+}
+
+.reviews-sec .sec-h em {
+  color: var(--warm-l);
+}
+
+.reviews-sec .divider {
+  background: var(--warm-l);
+  opacity: 0.4;
+}
+
+/* Kart grid — perspective burada tanımlanır, tüm kartlar ortak vanishing point'e sahip olur */
+.reviews-g {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: stretch;
+  perspective: 1400px;
+  perspective-origin: 50% 30%;
+}

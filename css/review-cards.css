@@ -1,0 +1,249 @@
+/* ══════════════════════════════════════════════════
+   YAZZ — 3D Review Card Styles
+   ══════════════════════════════════════════════════ */
+
+/* ─── Temel kart: preserve-3d zorunlu, yoksa translateZ görünmez ─── */
+.rcard {
+  position: relative;
+  cursor: default;
+  transform-style: preserve-3d;
+  /* transition .rv'den geliyor (animations.css) — sadece override gerekeni ekle */
+}
+
+/* ─── .rv çakışma düzeltmesi ─────────────────────────────────────────
+   animations.css'teki .rv.on { transform: none } kartın 3D tiltini sıfırlar.
+   Daha yüksek özgüllükle (reviews-g + rcard + rv + on = 4 class) override ediyoruz.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Başlangıç: rotateX ile hafif "derinlikten geliyor" hissi */
+.reviews-g .rcard.rv {
+  transform: translateY(28px) rotateX(10deg);
+}
+
+/* Revealed durumu: hafif dik açıda bekliyor → görsel derinlik */
+.reviews-g .rcard.rv.on {
+  transform: rotateX(6deg);
+}
+
+/* Kart 1 — hafif sağa eğik */
+.reviews-g .rcard:nth-child(1).rv.on {
+  transform: rotateX(6deg) rotateY(3deg);
+}
+
+/* Kart 2 — orta, sadece X */
+.reviews-g .rcard:nth-child(2).rv.on {
+  transform: rotateX(7deg);
+}
+
+/* Kart 3 — hafif sola eğik */
+.reviews-g .rcard:nth-child(3).rv.on {
+  transform: rotateX(6deg) rotateY(-3deg);
+}
+
+/* ─── Hover: tam 3D tilt, kart öne gelir ─── */
+.reviews-g .rcard:nth-child(1).rv.on:hover {
+  transform: rotateX(-6deg) rotateY(10deg) translateY(-10px);
+}
+
+.reviews-g .rcard:nth-child(2).rv.on:hover {
+  transform: rotateX(-8deg) rotateY(0deg) translateY(-10px);
+}
+
+.reviews-g .rcard:nth-child(3).rv.on:hover {
+  transform: rotateX(-6deg) rotateY(-10deg) translateY(-10px);
+}
+
+/* ─── İç kart: translateZ ile perspektiften görünür derinlik ─── */
+.rcard-inner {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  /* translateZ(0) → preserve-3d parent + perspective parent = görünür derinlik */
+  transform: translateZ(0px);
+  transition: transform 0.55s cubic-bezier(.16, 1, .3, 1),
+              box-shadow 0.55s ease;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.28);
+  background: var(--deep2);
+}
+
+.rcard:hover .rcard-inner {
+  transform: translateZ(40px);
+  box-shadow:
+    0 36px 72px rgba(0, 0, 0, 0.65),
+    0 16px 32px rgba(0, 0, 0, 0.45),
+    0 4px 8px  rgba(0, 0, 0, 0.25);
+}
+
+/* ─── Arka plan görseli ─── */
+.rcard-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(.16, 1, .3, 1);
+}
+
+.rcard:hover .rcard-img {
+  transform: scale(1.06);
+}
+
+/* ─── Gradient overlay ─── */
+.rcard-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.10) 0%,
+    rgba(0, 0, 0, 0.02) 35%,
+    rgba(0, 0, 0, 0.60) 100%
+  );
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+
+.rcard:hover .rcard-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.04) 35%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+}
+
+/* ─── İçerik katmanı ─── */
+.rcard-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  color: #fff;
+}
+
+/* ─── Üst alan ─── */
+.rcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.rcard-header > div:first-child {
+  flex: 1;
+}
+
+/* ─── 5 yıldız ─── */
+.rcard-stars {
+  font-size: 1.05rem;
+  letter-spacing: .12em;
+  color: var(--star-color);
+  margin-bottom: 10px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ─── Alıntı metni ─── */
+.rcard-text {
+  font-family: var(--fd);
+  font-size: clamp(.88rem, 1.2vw, 1.02rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.90);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+}
+
+/* ─── Dış link butonu ─── */
+.rcard-link {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.rcard-link:hover {
+  background: rgba(255, 255, 255, 0.30);
+  transform: scale(1.12);
+}
+
+/* ─── Alt alan ─── */
+.rcard-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rcard-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.rcard-author > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rcard-name {
+  font-family: var(--fb);
+  font-size: .92rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: .03em;
+}
+
+.rcard-badge {
+  font-family: var(--fb);
+  font-size: .66rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.58);
+  letter-spacing: .02em;
+}
+
+.rcard-date {
+  font-family: var(--fb);
+  font-size: .70rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.48);
+  white-space: nowrap;
+}
+
+/* ─── Skor pill'leri ─── */
+.rcard-scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.rcard-scores span {
+  font-family: var(--fb);
+  font-size: .65rem;
+  font-weight: 400;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  letter-spacing: .02em;
+}

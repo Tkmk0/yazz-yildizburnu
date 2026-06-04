@@ -41,8 +41,9 @@
 
 .hero-bg-text {
   position: absolute;
-  bottom: -4%;
-  left: -1%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: var(--fd);
   font-size: clamp(8rem, 22vw, 22rem);
   font-weight: 300;
@@ -225,6 +226,7 @@
   position: absolute;
   bottom: 28px; left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -573,6 +575,16 @@
 }
 
 /* =====================
+   REVIEWS SECTION
+   ===================== */
+.reviews-sec {
+  background: var(--deep);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* =====================
    CONTACT SECTION
    ===================== */
 .contact-sec {
@@ -597,9 +609,9 @@
 
 .contact-g {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
+  grid-template-columns: 1fr;
+  max-width: 560px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
@@ -639,7 +651,7 @@
 .ci-v a:hover { color: var(--primary-light); }
 
 /* Harita */
-#yazz-map {
+#yaz-map {
   margin-top: 20px;
   border-radius: 14px;
   overflow: hidden;
@@ -690,15 +702,15 @@
 }
 
 /* Popup */
-.yazz-popup .leaflet-popup-content-wrapper {
+.yaz-popup .leaflet-popup-content-wrapper {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0,0,0,.18);
   border: none;
   padding: 0;
 }
-.yazz-popup .leaflet-popup-tip { background: #fff; }
-.yazz-popup .leaflet-popup-content { margin: 0; }
+.yaz-popup .leaflet-popup-tip { background: #fff; }
+.yaz-popup .leaflet-popup-content { margin: 0; }
 .amap-popup {
   display: flex;
   flex-direction: column;

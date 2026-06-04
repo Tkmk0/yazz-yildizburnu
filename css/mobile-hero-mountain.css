@@ -1,0 +1,15 @@
+/* ══════════════════════════════════════════════════
+   YAZ — Mountain Scene · Responsive Overrides
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  #mountain-mount {
+    height: 30vh;
+  }
+}
+
+@media (max-width: 480px) {
+  #mountain-mount {
+    height: 22vh;
+  }
+}

@@ -113,10 +113,11 @@
   .hero-bg-text { display: none; }
   .brush-hero   { display: none; }
 
-  /* Scroll göstergesi — home bar üstüne */
+  /* Scroll göstergesi — home bar üstüne; mountain canvas (z-index:1) üzerinde kalmalı */
   .scroll-ind {
     bottom: calc(var(--sab) + 14px);
     color: rgba(255, 255, 255, .35);
+    z-index: 3;
   }
   .scroll-line {
     background: linear-gradient(to bottom, transparent, var(--primary-light));

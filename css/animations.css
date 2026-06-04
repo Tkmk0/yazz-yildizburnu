@@ -153,3 +153,19 @@
     transition: none;
   }
 }
+
+/* =====================
+   MOUNTAIN FADE-IN
+   ===================== */
+@keyframes mountainFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* =====================
+   REVIEW CARD STAGGER
+   nth-child kullanılır — data-d transition-delay'ini override etmemek için
+   ===================== */
+.reviews-g .rcard:nth-child(1) { transition-delay: .10s; }
+.reviews-g .rcard:nth-child(2) { transition-delay: .26s; }
+.reviews-g .rcard:nth-child(3) { transition-delay: .42s; }

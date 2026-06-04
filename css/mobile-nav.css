@@ -17,8 +17,9 @@
   /* Nav artık her zaman bej gradyan — burger koyu renk */
   .burger span { background: var(--primary-dark); }
 
-  /* Logo küçüt */
-  .nav-logo-img { height: 36px; }
+  /* Logo küçüt — daire */
+  .nav-logo-img { height: 36px; width: 36px; }
+  .logo-img-wrap { width: 36px; height: 36px; }
   .logo-sub { display: none; }
 
   /* Desktop öğeleri gizle — lang-wrap korunur */

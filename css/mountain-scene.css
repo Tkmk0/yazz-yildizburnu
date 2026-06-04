@@ -1,0 +1,20 @@
+/* =====================
+   MOUNTAIN SCENE CANVAS
+   ===================== */
+#mountain-mount {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--mountain-h, 42vh);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  animation: mountainFadeIn 1.8s ease 0.6s forwards;
+}
+
+#mountain-mount canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

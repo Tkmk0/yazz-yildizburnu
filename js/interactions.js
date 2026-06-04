@@ -26,6 +26,11 @@ mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 }));
 
 // 2. MENU TABS
+const subnavYiyecek = document.getElementById('subnav-yiyecek');
+const subnavIcecek  = document.getElementById('subnav-icecek');
+const alkolBtn = document.querySelector('.snav-alkol');
+const alkolSub = document.getElementById('alkol-sub');
+
 document.querySelectorAll('.mtab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.mtab').forEach(t => {
@@ -37,6 +42,22 @@ document.querySelectorAll('.mtab').forEach(tab => {
     tab.setAttribute('aria-selected', 'true');
     const panel = document.getElementById('tab-' + tab.dataset.tab);
     panel.classList.add('act');
+    if (subnavYiyecek) subnavYiyecek.style.display = tab.dataset.tab === 'yiyecek' ? '' : 'none';
+    if (subnavIcecek)  subnavIcecek.style.display  = tab.dataset.tab === 'icecek'  ? '' : 'none';
+    // Aktif panelin ilk menu-group'unu göster
+    panel.querySelectorAll(':scope > .menu-group').forEach(g => g.classList.remove('act'));
+    const firstGroup = panel.querySelector(':scope > .menu-group');
+    if (firstGroup) firstGroup.classList.add('act');
+    // Subnav'da ilk butonu aktifle
+    const activeNav = tab.dataset.tab === 'yiyecek' ? subnavYiyecek : subnavIcecek;
+    if (activeNav) {
+      activeNav.querySelectorAll('.snav').forEach(b => b.classList.remove('act'));
+      const firstSnav = activeNav.querySelector('.snav[data-scroll]');
+      if (firstSnav) firstSnav.classList.add('act');
+    }
+    // Alkol accordion'ı kapat
+    if (alkolSub) alkolSub.classList.remove('open');
+    if (alkolBtn) alkolBtn.classList.remove('open');
     // Re-observe reveal elements in the newly active panel
     panel.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => {
       el.classList.remove('on');
@@ -46,6 +67,55 @@ document.querySelectorAll('.mtab').forEach(tab => {
     });
   });
 });
+
+// 3. SUBNAV TAB SWITCHING
+document.querySelectorAll('.snav[data-scroll]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.scroll);
+    if (!target) return;
+    const parent = target.parentElement;
+    parent.querySelectorAll(':scope > .menu-group').forEach(g => g.classList.remove('act'));
+    target.classList.add('act');
+    if (btn.classList.contains('snav-sub')) {
+      if (alkolSub) alkolSub.querySelectorAll('.snav-sub').forEach(b => b.classList.remove('act'));
+      btn.classList.add('act');
+    } else {
+      btn.closest('.subnav').querySelectorAll('.snav').forEach(b => b.classList.remove('act'));
+      btn.classList.add('act');
+      if (alkolSub) alkolSub.classList.remove('open');
+      if (alkolBtn) alkolBtn.classList.remove('open');
+    }
+    target.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => {
+      el.classList.remove('on');
+      setTimeout(() => { if (window.revealObs) window.revealObs.observe(el); }, 40);
+    });
+  });
+});
+
+// 4. ALKOL ACCORDION
+if (alkolBtn && alkolSub) {
+  alkolBtn.addEventListener('click', () => {
+    const isOpen = alkolSub.classList.toggle('open');
+    alkolBtn.classList.toggle('open', isOpen);
+    if (isOpen) {
+      const alkolSection = document.getElementById('sec-alkol');
+      if (alkolSection) {
+        const panel = alkolSection.parentElement;
+        panel.querySelectorAll(':scope > .menu-group').forEach(g => g.classList.remove('act'));
+        alkolSection.classList.add('act');
+        alkolSection.querySelectorAll(':scope > .menu-group').forEach(g => g.classList.remove('act'));
+        const firstSub = alkolSection.querySelector(':scope > .menu-group');
+        if (firstSub) firstSub.classList.add('act');
+        alkolBtn.closest('.subnav').querySelectorAll('.snav:not(.snav-alkol):not(.snav-sub)').forEach(b => b.classList.remove('act'));
+        const firstAlkolSub = alkolSub.querySelector('.snav-sub[data-scroll]');
+        if (firstAlkolSub) {
+          alkolSub.querySelectorAll('.snav-sub').forEach(b => b.classList.remove('act'));
+          firstAlkolSub.classList.add('act');
+        }
+      }
+    }
+  });
+}
 
 // 3. GALLERY LIGHTBOX
 (function () {
@@ -136,3 +206,22 @@ document.querySelectorAll('.mtab').forEach(tab => {
     if (e.key === 'Escape' && overlay.style.display === 'flex') closeLightbox();
   });
 }());
+
+// 6. MOUNTAIN SCENE — hero görünümden çıkınca pause, girince resume
+(function () {
+  var heroEl = document.getElementById('home');
+  if (!heroEl) return;
+
+  var heroObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!window.mountainScene) return;
+      if (e.isIntersecting) {
+        window.mountainScene.resume();
+      } else {
+        window.mountainScene.pause();
+      }
+    });
+  }, { threshold: 0.05 });
+
+  heroObs.observe(heroEl);
+})();

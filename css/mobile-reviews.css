@@ -1,0 +1,65 @@
+/* ══════════════════════════════════════════════════
+   YAZZ — Misafir Yorumları Mobil
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .rcard-inner {
+    height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-g {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rcard-inner {
+    height: 380px;
+  }
+
+  /* 3. kart tam genişlik */
+  .rcard:last-child {
+    grid-column: 1 / -1;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviews-g {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .rcard:last-child {
+    grid-column: auto;
+    max-width: none;
+  }
+
+  .rcard-inner {
+    height: 340px;
+  }
+
+  .rcard-content {
+    padding: 18px;
+  }
+}
+
+/* Dokunmatik: tüm 3D tiltler devre dışı, düz kart */
+@media (hover: none) {
+  .reviews-g .rcard.rv.on,
+  .reviews-g .rcard:nth-child(1).rv.on,
+  .reviews-g .rcard:nth-child(2).rv.on,
+  .reviews-g .rcard:nth-child(3).rv.on,
+  .reviews-g .rcard:nth-child(1).rv.on:hover,
+  .reviews-g .rcard:nth-child(2).rv.on:hover,
+  .reviews-g .rcard:nth-child(3).rv.on:hover {
+    transform: none;
+  }
+
+  .rcard:hover .rcard-inner,
+  .rcard:hover .rcard-img {
+    transform: none;
+  }
+}

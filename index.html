@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>yazz — Yıldızburnu, Çeşme</title>
+  <title>yaz — Yıldızburnu, Çeşme</title>
   <meta name="description" content="Çeşme Yıldızburnu'nda taze Ege deniz ürünleri, seçkin şaraplar. À la carte restoran.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com https://esm.sh 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://basemaps.cartocdn.com; frame-ancestors 'none';">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/typography.css">
@@ -16,6 +18,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/mountain-scene.css">
   <!-- iPhone 15 Mobile Redesign -->
   <link rel="stylesheet" href="css/mobile-base.css">
   <link rel="stylesheet" href="css/mobile-nav.css">
@@ -26,14 +29,18 @@
   <link rel="stylesheet" href="css/mobile-gallery.css">
   <link rel="stylesheet" href="css/mobile-experience.css">
   <link rel="stylesheet" href="css/mobile-contact.css">
+  <link rel="stylesheet" href="css/mobile-hero-mountain.css">
+  <link rel="stylesheet" href="css/reviews.css">
+  <link rel="stylesheet" href="css/review-cards.css">
+  <link rel="stylesheet" href="css/mobile-reviews.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="#" class="logo" aria-label="yazz anasayfa">
+  <a href="#" class="logo" aria-label="yaz anasayfa">
     <div class="logo-img-wrap">
-      <img src="img/logo.png" class="nav-logo-img" alt="yazz">
+      <img src="img/logo.png" class="nav-logo-img" alt="yaz">
     </div>
     <span class="logo-sub">Yıldızburnu · Çeşme</span>
   </a>
@@ -70,7 +77,7 @@
 
 <!-- Logo splash — açılışta ortada, scroll'da nav'a uçar -->
 <div id="logoSplash" class="logo-splash" aria-hidden="true">
-  <img src="img/logo.png" class="logo-splash-img" alt="yazz">
+  <img src="img/logo.png" class="logo-splash-img" alt="yaz">
 </div>
 
 <!-- =====================
@@ -119,7 +126,7 @@
     <!-- SAĞ: Görsel -->
     <div class="hero-right">
       <div class="hero-img-frame">
-        <img src="img/deniz-masa.png" alt="yazz Yıldızburnu — deniz kenarında akşam yemeği">
+        <img src="img/deniz-masa.png" alt="yaz Yıldızburnu — deniz kenarında akşam yemeği">
       </div>
 
       <div class="hero-badge" aria-label="Taze, yerel">
@@ -128,7 +135,7 @@
       </div>
 
       <div class="hero-stat-float">
-        <div class="hsf-n">4.9</div>
+        <div class="hsf-n">4.5</div>
         <div class="hsf-l">Google</div>
       </div>
     </div>
@@ -138,6 +145,7 @@
     <div class="scroll-line"></div>
     <span data-tr="Keşfet" data-en="Scroll">Keşfet</span>
   </div>
+  <div id="mountain-mount" aria-hidden="true"></div>
   </div><!-- /hero-sticky -->
 </section>
 
@@ -164,7 +172,7 @@
     <div class="about-g">
       <div class="about-img-wrap rv-l">
         <div class="about-img">
-          <img src="img/ic-mekan.png" alt="yazz — iç mekan atmosferi">
+          <img src="img/ic-mekan.png" alt="yaz — iç mekan atmosferi">
         </div>
         <!-- Fırça dekor -->
         <svg class="about-brush" viewBox="0 0 120 60" fill="none" aria-hidden="true">
@@ -184,7 +192,7 @@
         </h2>
         <div class="divider rv" data-d="2"></div>
         <div class="body-t rv" data-d="2">
-          <p data-tr="Yıldızburnu'nun kristal sularına nazır, yazz restoran Ege mutfağının en seçkin lezzetlerini zarif bir atmosferde sunmak için doğdu. Her detay, her lezzet; denizin ritmiyle şekillendi." data-en="Overlooking the crystal waters of Yıldızburnu, yazz was born to present the finest flavours of Aegean cuisine in an elegant atmosphere. Every detail, every flavour shaped by the rhythm of the sea.">Yıldızburnu'nun kristal sularına nazır, <strong>yazz</strong> restoran Ege mutfağının en seçkin lezzetlerini zarif bir atmosferde sunmak için doğdu.</p>
+          <p data-tr="Yıldızburnu'nun kristal sularına nazır, yaz restoran Ege mutfağının en seçkin lezzetlerini zarif bir atmosferde sunmak için doğdu. Her detay, her lezzet; denizin ritmiyle şekillendi." data-en="Overlooking the crystal waters of Yıldızburnu, yaz was born to present the finest flavours of Aegean cuisine in an elegant atmosphere. Every detail, every flavour shaped by the rhythm of the sea.">Yıldızburnu'nun kristal sularına nazır, <strong>yaz</strong> restoran Ege mutfağının en seçkin lezzetlerini zarif bir atmosferde sunmak için doğdu.</p>
           <p data-tr="Her sabah yerel balıkçılardan gelen taze ürünler, usta şeflerimizin elleriyle mevsimsel dokunuşlarla buluşuyor." data-en="Every morning, fresh catch from local fishermen meets seasonal Aegean touches from our master chefs.">Her sabah yerel balıkçılardan gelen taze ürünler, usta şeflerimizin elleriyle mevsimsel Ege dokunuşlarıyla buluşuyor.</p>
         </div>
         <div class="about-feats rv" data-d="3">
@@ -204,18 +212,19 @@
   <div class="quote-deco-r" aria-hidden="true">"</div>
   <div class="quote-inner">
     <span class="sec-label rv" data-tr="Felsefemiz" data-en="Our Philosophy">Felsefemiz</span>
-    <blockquote class="quote-text rv" data-d="1"
-      data-tr="Deniz, zeytinyağı ve zaman — Ege mutfağının üç kutsal malzemesi. yazz'da bunlara bir şey daha ekliyoruz: <strong>samimiyet.</strong>"
-      data-en="Sea, olive oil and time — the three sacred ingredients of Aegean cuisine. At yazz we add one more: <strong>sincerity.</strong>">
-      Deniz, zeytinyağı ve zaman — Ege mutfağının üç kutsal malzemesi. yazz'da bunlara bir şey daha ekliyoruz: <strong>samimiyet.</strong>
+    <blockquote class="quote-text rv" data-d="1" data-html="true"
+      data-tr="<strong>Ege'nin Kalbinde Bir Sofra</strong><br>Yazz'da, Ege mutfağının temel malzemeleri olan deniz, zeytinyağı ve zamana hürmet ederiz. Ancak biz, buna özel bir şey daha kattığımızı düşünüyoruz: samimiyet."
+      data-en="<strong>A Table in the Heart of the Aegean</strong><br>At Yazz, we pay respect to the essential ingredients of Aegean cuisine: the sea, olive oil, and time. But we believe we add something special: sincerity.">
+      <strong>Ege'nin Kalbinde Bir Sofra</strong><br>
+      Yazz'da, Ege mutfağının temel malzemeleri olan deniz, zeytinyağı ve zamana hürmet ederiz. Ancak biz, buna özel bir şey daha kattığımızı düşünüyoruz: samimiyet.
     </blockquote>
-    <p class="quote-author rv" data-d="2" data-tr="— yazz mutfağı, Çeşme" data-en="— yazz kitchen, Çeşme">— yazz mutfağı, Çeşme</p>
+    <p class="quote-author rv" data-d="2" data-tr="— yaz mutfağı, Çeşme" data-en="— yaz kitchen, Çeşme">— yaz mutfağı, Çeşme</p>
   </div>
 </div>
 
 <!-- MENU -->
 <section class="menu-sec sec-pad" id="menu">
-  <div class="menu-bgtxt" aria-hidden="true">yazz</div>
+  <div class="menu-bgtxt" aria-hidden="true">yaz</div>
   <div class="ctr">
     <div class="menu-header">
       <div>
@@ -229,45 +238,273 @@
           Günlük taze deniz ürünleri, Ege zeytinleri ve mevsimsel otlarla hazırlanan menümüz her gün güncellenir.
         </p>
         <div class="mtabs rv" data-d="2" role="tablist" style="margin-top:20px">
-          <button class="mtab act" data-tab="balik" role="tab" aria-selected="true" data-tr="Balık & Deniz" data-en="Fish & Seafood">Balık & Deniz</button>
-          <button class="mtab" data-tab="meze" role="tab" aria-selected="false" data-tr="Mezeler" data-en="Meze">Mezeler</button>
+          <button class="mtab act" data-tab="yiyecek" role="tab" aria-selected="true" data-tr="Yiyecekler" data-en="Food">Yiyecekler</button>
           <button class="mtab" data-tab="icecek" role="tab" aria-selected="false" data-tr="İçecekler" data-en="Drinks">İçecekler</button>
-          <button class="mtab" data-tab="tatli" role="tab" aria-selected="false" data-tr="Tatlılar" data-en="Desserts">Tatlılar</button>
         </div>
       </div>
     </div>
 
-    <div class="mpanel act" id="tab-balik">
-      <div class="mgrid">
-        <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Levrek Izgara" data-en="Grilled Sea Bass">Levrek Izgara</h3><span class="mi-price">₺680</span></div><p class="mi-desc" data-tr="Günlük taze levrek, limon-zeytinyağı sosu, mevsim sebzeleri" data-en="Daily fresh sea bass, lemon-olive oil sauce, seasonal vegetables">Günlük taze levrek, limon-zeytinyağı sosu, mevsim sebzeleri</p><span class="mi-tag" data-tr="Günlük Taze" data-en="Daily Fresh">Günlük Taze</span></div>
-        <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Çipura Fırın" data-en="Baked Sea Bream">Çipura Fırın</h3><span class="mi-price">₺620</span></div><p class="mi-desc" data-tr="Kekik-biberiye ile marine, domates, kapari, Ege zeytinyağı" data-en="Thyme-rosemary marinated, tomato, capers, Aegean olive oil">Kekik-biberiye ile marine, domates, kapari, Ege zeytinyağı</p></div>
-        <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Karides Güveç" data-en="Prawn Casserole">Karides Güveç</h3><span class="mi-price">₺580</span></div><p class="mi-desc" data-tr="Büyük karides, domates sosu, taze kekik, fırın peyniri" data-en="King prawns, tomato sauce, fresh thyme, baked cheese">Büyük karides, domates sosu, taze kekik, fırın peyniri</p><span class="mi-tag" data-tr="Şef Tavsiyesi" data-en="Chef's Choice">Şef Tavsiyesi</span></div>
-        <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Ahtapot Izgara" data-en="Grilled Octopus">Ahtapot Izgara</h3><span class="mi-price">₺720</span></div><p class="mi-desc" data-tr="Izgara ahtapot, sirkeli sos, taze otlar, ızgara sebze" data-en="Grilled octopus, vinaigrette, fresh herbs, grilled vegetables">Izgara ahtapot, sirkeli sos, taze otlar, ızgara sebze</p></div>
-        <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name" data-tr="Kalamar Tava" data-en="Fried Calamari">Kalamar Tava</h3><span class="mi-price">₺380</span></div><p class="mi-desc" data-tr="Mısır unlu çıtır kalamar, tarator sos, limon" data-en="Cornmeal-crusted crispy calamari, tarator sauce, lemon">Mısır unlu çıtır kalamar, tarator sos, limon</p></div>
-        <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name" data-tr="Paylaşım Tabağı" data-en="Sharing Platter">Paylaşım Tabağı</h3><span class="mi-price">₺1.200</span></div><p class="mi-desc" data-tr="2 kişilik: taze balık, midye, karides, kalamar seçkisi" data-en="For 2: fresh fish, mussels, prawns, calamari">2 kişilik: taze balık, midye, karides, kalamar seçkisi</p><span class="mi-tag" data-tr="2 Kişilik" data-en="For Two">2 Kişilik</span></div>
+    <div class="subnav" id="subnav-yiyecek">
+      <button class="snav act" data-scroll="sec-sabah" data-tr="Sabah" data-en="Breakfast">Sabah</button>
+      <button class="snav" data-scroll="sec-atistirmalik" data-tr="Atıştırmalıklar" data-en="Snacks">Atıştırmalıklar</button>
+      <button class="snav" data-scroll="sec-salata" data-tr="Salatalar" data-en="Salads">Salatalar</button>
+      <button class="snav" data-scroll="sec-denizden" data-tr="Denizden" data-en="From the Sea">Denizden</button>
+      <button class="snav" data-scroll="sec-ana" data-tr="Ana Yemekler" data-en="Main Dishes">Ana Yemekler</button>
+    </div>
+    <div class="subnav" id="subnav-icecek" style="display:none">
+      <button class="snav" data-scroll="sec-soft" data-tr="Soft İçecek" data-en="Soft Drinks">Soft İçecek</button>
+      <button class="snav" data-scroll="sec-kahve" data-tr="Kahve" data-en="Coffee">Kahve</button>
+      <button class="snav snav-alkol" data-scroll="sec-alkol" data-tr="Alkol" data-en="Alcohol">Alkol</button>
+      <div class="alkol-sub" id="alkol-sub">
+        <button class="snav snav-sub" data-scroll="sec-klasik" data-tr="Klasik Kokteyller" data-en="Classic Cocktails">Klasik Kokteyller</button>
+        <button class="snav snav-sub" data-scroll="sec-imza" data-tr="İmza Kokteyller" data-en="Signature Cocktails">İmza Kokteyller</button>
+        <button class="snav snav-sub" data-scroll="sec-spritz" data-tr="Spritzler" data-en="Spritzers">Spritzler</button>
+        <button class="snav snav-sub" data-scroll="sec-vodka" data-tr="Vodkalar" data-en="Vodkas">Vodkalar</button>
+        <button class="snav snav-sub" data-scroll="sec-shot" data-tr="Shotlar" data-en="Shots">Shotlar</button>
+        <button class="snav snav-sub" data-scroll="sec-viski" data-tr="Viskiler" data-en="Whiskies">Viskiler</button>
+        <button class="snav snav-sub" data-scroll="sec-gin" data-tr="Ginler" data-en="Gins">Ginler</button>
+        <button class="snav snav-sub" data-scroll="sec-sampanya" data-tr="Şampanyalar" data-en="Champagnes">Şampanyalar</button>
+        <button class="snav snav-sub" data-scroll="sec-sarap" data-tr="Şaraplar" data-en="Wines">Şaraplar</button>
       </div>
     </div>
-    <div class="mpanel" id="tab-meze">
-      <div class="mgrid">
-        <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Lakerda" data-en="Cured Bonito">Lakerda</h3><span class="mi-price">₺280</span></div><p class="mi-desc" data-tr="Geleneksel lakerda, soğan, zeytinyağı" data-en="Traditional cured bonito, onion, olive oil">Geleneksel lakerda, soğan, zeytinyağı</p></div>
-        <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Balık Tarama" data-en="Fish Roe Dip">Balık Tarama</h3><span class="mi-price">₺180</span></div><p class="mi-desc" data-tr="Ev yapımı tarama, limon, fesleğen yağı, lavash" data-en="House-made tarama, lemon, basil oil, lavash">Ev yapımı tarama, limon, fesleğen yağı, lavash</p><span class="mi-tag" data-tr="Şef Tavsiyesi" data-en="Chef's Choice">Şef Tavsiyesi</span></div>
-        <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Midye Dolma" data-en="Stuffed Mussels">Midye Dolma</h3><span class="mi-price">₺220</span></div><p class="mi-desc" data-tr="Pirinçli iç dolma, karanfil, baharatlar, limon" data-en="Rice stuffing, cloves, spices, lemon">Pirinçli iç dolma, karanfil, baharatlar, limon</p></div>
-        <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Sigara Böreği" data-en="Cheese Pastry">Sigara Böreği</h3><span class="mi-price">₺160</span></div><p class="mi-desc" data-tr="Çıtır yufka, taze peynir, dereotu" data-en="Crispy filo, fresh cheese, dill">Çıtır yufka, taze peynir, dereotu</p></div>
+
+    <div class="mpanel act" id="tab-yiyecek">
+      <div class="menu-group act" id="sec-sabah">
+        <div class="menu-subhead rv"><span data-tr="Sabah" data-en="Breakfast">Sabah</span></div>
+        <div class="mgrid">
+          <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Peynirli Omlet" data-en="Cheese Omelette">Peynirli Omlet</h3></div></div>
+          <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Biberli Mantarlı Omlet" data-en="Pepper & Mushroom Omelette">Biberli Mantarlı Omlet</h3></div></div>
+          <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Hindi Fümeli Avokadolu Ekmeküstü" data-en="Smoked Turkey & Avocado Toast">Hindi Fümeli Avokadolu Ekmeküstü</h3></div></div>
+          <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Menemen" data-en="Turkish Scrambled Eggs">Menemen</h3></div></div>
+          <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name" data-tr="Beyaz Peynirli Tost" data-en="White Cheese Toast">Beyaz Peynirli Tost</h3></div></div>
+          <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name" data-tr="Hindi Fümeli Tost" data-en="Smoked Turkey Toast">Hindi Fümeli Tost</h3></div></div>
+          <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name" data-tr="Kahvaltı Tabağı" data-en="Breakfast Plate">Kahvaltı Tabağı</h3></div></div>
+          <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name" data-tr="Yer Fıstıklı Granola" data-en="Peanut Granola">Yer Fıstıklı Granola</h3></div></div>
+        </div>
+      </div>
+      <div class="menu-group" id="sec-atistirmalik">
+        <div class="menu-subhead rv"><span data-tr="Atıştırmalıklar" data-en="Snacks">Atıştırmalıklar</span></div>
+        <div class="mgrid">
+          <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Patates Kızartması" data-en="French Fries">Patates Kızartması</h3></div></div>
+          <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Trüflü Patates Kızartması" data-en="Truffle Fries">Trüflü Patates Kızartması</h3></div></div>
+          <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Çıtır Tavuk" data-en="Crispy Chicken">Çıtır Tavuk</h3></div></div>
+          <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Yaz Tabağı" data-en="Summer Plate">Yaz Tabağı</h3></div></div>
+          <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name" data-tr="Glutensiz Mücver" data-en="Gluten-free Courgette Fritters">Glutensiz Mücver</h3></div></div>
+          <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name" data-tr="Peynir Tabağı" data-en="Cheese Board">Peynir Tabağı</h3></div></div>
+        </div>
+      </div>
+      <div class="menu-group" id="sec-salata">
+        <div class="menu-subhead rv"><span data-tr="Salatalar" data-en="Salads">Salatalar</span></div>
+        <div class="mgrid">
+          <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Pancarlı Lorlu Salata" data-en="Beetroot & Ricotta Salad">Pancarlı Lorlu Salata</h3></div><p class="mi-desc" data-tr="Mevsim yeşillikleri, pancar, lor peyniri" data-en="Seasonal greens, beetroot, ricotta">Mevsim yeşillikleri, pancar, lor peyniri</p></div>
+          <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Izgara Şeftali Salata" data-en="Grilled Peach Salad">Izgara Şeftali Salata</h3></div><p class="mi-desc" data-tr="Semizotu, ızgara şeftali, kaju, lor peyniri" data-en="Purslane, grilled peach, cashew, ricotta">Semizotu, ızgara şeftali, kaju, lor peyniri</p></div>
+          <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Enginar Salata" data-en="Artichoke Salad">Enginar Salata</h3></div><p class="mi-desc" data-tr="Enginar, avokado, taze nane, fesleğen, yedikule" data-en="Artichoke, avocado, fresh mint, basil, yedikule lettuce">Enginar, avokado, taze nane, fesleğen, yedikule</p></div>
+          <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Domates Salatası" data-en="Tomato Salad">Domates Salatası</h3></div><p class="mi-desc" data-tr="Domates, soğan, nar ekşili sos" data-en="Tomato, onion, pomegranate molasses dressing">Domates, soğan, nar ekşili sos</p></div>
+          <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name" data-tr="Izgara Somon Salata" data-en="Grilled Salmon Salad">Izgara Somon Salata</h3></div><p class="mi-desc" data-tr="Yeşillik, portakal segment, somon, kapari" data-en="Greens, orange segments, salmon, capers">Yeşillik, portakal segment, somon, kapari</p></div>
+        </div>
+      </div>
+      <div class="menu-group" id="sec-denizden">
+        <div class="menu-subhead rv"><span data-tr="Denizden" data-en="From the Sea">Denizden</span></div>
+        <div class="mgrid">
+          <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Deniz Mahsüllü Ekmek Üstü" data-en="Seafood Toast">Deniz Mahsüllü Ekmek Üstü</h3></div><p class="mi-desc" data-tr="Köy ekmeği, avokado, salatalık, kırmızı soğan, karides, kapari" data-en="Village bread, avocado, cucumber, red onion, prawns, capers">Köy ekmeği, avokado, salatalık, kırmızı soğan, karides, kapari</p></div>
+          <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Karides Güveç" data-en="Prawn Casserole">Karides Güveç</h3></div><p class="mi-desc" data-tr="Karides, sarımsak, balık suyu, baharat" data-en="Prawns, garlic, fish stock, spices">Karides, sarımsak, balık suyu, baharat</p></div>
+          <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Kalamar Tava" data-en="Fried Calamari">Kalamar Tava</h3></div></div>
+          <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Sweetchill Karides Linguine" data-en="Sweetchill Prawn Linguine">Sweetchill Karides Linguine</h3></div><p class="mi-desc" data-tr="Karides, balık suyu, acı tatlı sos" data-en="Prawns, fish stock, sweet chilli sauce">Karides, balık suyu, acı tatlı sos</p></div>
+          <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name" data-tr="Belçika Usulü Kara Midye" data-en="Belgian Black Mussels">Belçika Usulü Kara Midye</h3></div></div>
+          <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name" data-tr="Vongole Linguine" data-en="Linguine Vongole">Vongole Linguine</h3></div><p class="mi-desc" data-tr="Beyaz şarapla çektirilmiş kum midyesi, krema, limon suyu" data-en="Clams in white wine, cream, lemon juice">Beyaz şarapla çektirilmiş kum midyesi, krema, limon suyu</p></div>
+          <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name" data-tr="Limon Soslu Levrek" data-en="Sea Bass with Lemon Sauce">Limon Soslu Levrek</h3></div><p class="mi-desc" data-tr="Levrek, beyaz şarap, krema, limon sos" data-en="Sea bass, white wine, cream, lemon sauce">Levrek, beyaz şarap, krema, limon sos</p></div>
+          <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name" data-tr="Izgara Ahtapot" data-en="Grilled Octopus">Izgara Ahtapot</h3></div></div>
+          <div class="mi rv" data-d="8"><div class="mi-head"><h3 class="mi-name" data-tr="Izgara Somon" data-en="Grilled Salmon">Izgara Somon</h3></div></div>
+        </div>
+      </div>
+      <div class="menu-group" id="sec-ana">
+        <div class="menu-subhead rv"><span data-tr="Ana Yemekler" data-en="Main Dishes">Ana Yemekler</span></div>
+        <div class="mgrid">
+          <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Yaz Izgara Köfte" data-en="Summer Grilled Meatballs">Yaz Izgara Köfte</h3></div></div>
+          <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Et Şinitzel" data-en="Meat Schnitzel">Et Şinitzel</h3></div></div>
+          <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Yaz Bonfile" data-en="Summer Tenderloin">Yaz Bonfile</h3></div></div>
+          <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Yaz Burger" data-en="Summer Burger">Yaz Burger</h3></div></div>
+          <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name" data-tr="Chicken Burger" data-en="Chicken Burger">Chicken Burger</h3></div></div>
+          <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name" data-tr="Fesleğen Domatesli Linguine" data-en="Basil Tomato Linguine">Fesleğen Domatesli Linguine</h3></div></div>
+          <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name" data-tr="Aglio e Olio Makarna" data-en="Aglio e Olio Pasta">Aglio e Olio Makarna</h3></div></div>
+          <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name" data-tr="Ev Yapımı Çıtır Mantı" data-en="Homemade Crispy Manti">Ev Yapımı Çıtır Mantı</h3></div></div>
+        </div>
       </div>
     </div>
+
     <div class="mpanel" id="tab-icecek">
-      <div class="mgrid">
-        <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Ege Beyazı" data-en="Aegean White">Ege Beyazı</h3><span class="mi-price">₺280</span></div><p class="mi-desc" data-tr="Urla Narince, hafif meşe, kuru çiçek aroması" data-en="Urla Narince, light oak, dry floral">Urla Narince, hafif meşe, kuru çiçek aroması</p><span class="mi-tag" data-tr="Yerel Bağ" data-en="Local Vineyard">Yerel Bağ</span></div>
-        <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Ege Rosé" data-en="Aegean Rosé">Ege Rosé</h3><span class="mi-price">₺320</span></div><p class="mi-desc" data-tr="Çilek, nar aromalı hafif rosé" data-en="Strawberry, pomegranate, light rosé">Çilek, nar aromalı hafif rosé</p></div>
-        <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Rakı Servisi" data-en="Raki Service">Rakı Servisi</h3><span class="mi-price">₺220</span></div><p class="mi-desc" data-tr="Geleneksel rakı, su, buz, meze eşliğinde" data-en="Traditional raki, water, ice, with meze">Geleneksel rakı, su, buz, meze eşliğinde</p></div>
-        <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Taze Narenciye" data-en="Fresh Citrus">Taze Narenciye</h3><span class="mi-price">₺120</span></div><p class="mi-desc" data-tr="Ege portakalı, taze sıkılmış" data-en="Aegean orange, freshly squeezed">Ege portakalı, taze sıkılmış</p></div>
+      <div class="menu-group act" id="sec-soft">
+        <div class="menu-subhead rv"><span data-tr="Soft İçecekler" data-en="Soft Drinks">Soft İçecekler</span></div>
+        <div class="mgrid">
+          <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Coca Cola / Zero</h3></div></div>
+          <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Fanta</h3></div></div>
+          <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Sprite</h3></div></div>
+          <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Ice Tea (Limon / Şeftali)" data-en="Ice Tea (Lemon / Peach)">Ice Tea (Limon / Şeftali)</h3></div></div>
+          <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">Soda</h3></div></div>
+          <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Churchill</h3></div></div>
+          <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name" data-tr="Limonata" data-en="Lemonade">Limonata</h3></div></div>
+          <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name" data-tr="Alkolsüz Meyve Kokteyli" data-en="Non-alcoholic Fruit Cocktail">Alkolsüz Meyve Kokteyli</h3></div></div>
+          <div class="mi rv" data-d="8"><div class="mi-head"><h3 class="mi-name" data-tr="Organik Erik Suyu" data-en="Organic Plum Juice">Organik Erik Suyu</h3></div></div>
+          <div class="mi rv" data-d="9"><div class="mi-head"><h3 class="mi-name" data-tr="Organik Green Detox" data-en="Organic Green Detox">Organik Green Detox</h3></div></div>
+          <div class="mi rv" data-d="10"><div class="mi-head"><h3 class="mi-name" data-tr="Küçük Su" data-en="Still Water (Small)">Küçük Su</h3></div></div>
+          <div class="mi rv" data-d="11"><div class="mi-head"><h3 class="mi-name" data-tr="Büyük Su" data-en="Still Water (Large)">Büyük Su</h3></div></div>
+          <div class="mi rv" data-d="12"><div class="mi-head"><h3 class="mi-name" data-tr="Fuiggi Gazlı Maden Suyu" data-en="Fuiggi Sparkling Water">Fuiggi Gazlı Maden Suyu</h3></div></div>
+          <div class="mi rv" data-d="13"><div class="mi-head"><h3 class="mi-name" data-tr="Bardak Çay" data-en="Turkish Tea">Bardak Çay</h3></div></div>
+          <div class="mi rv" data-d="14"><div class="mi-head"><h3 class="mi-name" data-tr="Bitki Çayı" data-en="Herbal Tea">Bitki Çayı</h3></div></div>
+        </div>
       </div>
-    </div>
-    <div class="mpanel" id="tab-tatli">
-      <div class="mgrid">
-        <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="İncir Tatlısı" data-en="Fig Dessert">İncir Tatlısı</h3><span class="mi-price">₺180</span></div><p class="mi-desc" data-tr="Fırında incir, ceviz, kaymak, bal" data-en="Baked fig, walnut, clotted cream, honey">Fırında incir, ceviz, kaymak, bal</p><span class="mi-tag" data-tr="Şef Tavsiyesi" data-en="Chef's Choice">Şef Tavsiyesi</span></div>
-        <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Panna Cotta</h3><span class="mi-price">₺160</span></div><p class="mi-desc" data-tr="Lavanta aromalı krem, kırmızı meyve sosu" data-en="Lavender cream, red berry coulis">Lavanta aromalı krem, kırmızı meyve sosu</p></div>
-        <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Dondurma Tabağı" data-en="Ice Cream">Dondurma Tabağı</h3><span class="mi-price">₺140</span></div><p class="mi-desc" data-tr="3 top el yapımı dondurma, taze meyve, nane" data-en="3 scoops artisan ice cream, fresh fruit, mint">3 top el yapımı dondurma, taze meyve, nane</p></div>
+      <div class="menu-group" id="sec-kahve">
+        <div class="menu-subhead rv"><span data-tr="Kahveler" data-en="Coffees">Kahveler</span></div>
+        <div class="mgrid">
+          <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Türk Kahvesi" data-en="Turkish Coffee">Türk Kahvesi</h3></div></div>
+          <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Single Espresso</h3></div></div>
+          <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Double Espresso</h3></div></div>
+          <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">Americano</h3></div></div>
+          <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">Latte</h3></div></div>
+          <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Flat White</h3></div></div>
+          <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name">Ice Americano</h3></div></div>
+          <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name">Ice Latte</h3></div></div>
+          <div class="mi rv" data-d="8"><div class="mi-head"><h3 class="mi-name">Ice Sparkling Americano</h3></div></div>
+        </div>
+      </div>
+      <div class="menu-group" id="sec-alkol">
+        <div class="menu-subhead rv"><span data-tr="Alkol" data-en="Alcohol">Alkol</span></div>
+        <div class="menu-group act" id="sec-klasik">
+          <div class="menu-subhead-sub rv"><span data-tr="Klasik Kokteyller" data-en="Classic Cocktails">Klasik Kokteyller</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Dirty Martini</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Espresso Martini</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Negroni</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">Margarita</h3></div></div>
+            <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">Cas Amigas Margarita</h3></div></div>
+            <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Aperol Spritz</h3></div></div>
+            <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name">Long Island</h3></div></div>
+            <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name">Bloody Mary</h3></div></div>
+            <div class="mi rv" data-d="8"><div class="mi-head"><h3 class="mi-name">Whiskey Sour</h3></div></div>
+            <div class="mi rv" data-d="9"><div class="mi-head"><h3 class="mi-name">Old Fashioned</h3></div></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-imza">
+          <div class="menu-subhead-sub rv"><span data-tr="İmza Kokteyller" data-en="Signature Cocktails">İmza Kokteyller</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Papatya - Mürver" data-en="Chamomile - Elderflower">Papatya - Mürver</h3></div><p class="mi-desc" data-tr="Mavi kelebek kanadı çayı ile demlenmiş cin, mürver likörü, papatya, nane, berraklaştırılmış lime suyu" data-en="Butterfly pea flower-infused gin, elderflower liqueur, chamomile, mint, clarified lime juice">Mavi kelebek kanadı çayı ile demlenmiş cin, mürver likörü, papatya, nane, berraklaştırılmış lime suyu</p></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Kuzu Kulağı Sour" data-en="Sorrel Sour">Kuzu Kulağı Sour</h3></div><p class="mi-desc" data-tr="Cin, damla sakızı likörü, kuzu kulağı mix, limon ekşisi" data-en="Gin, mastic liqueur, sorrel mix, lemon sour">Cin, damla sakızı likörü, kuzu kulağı mix, limon ekşisi</p></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Kavun - Dereotu" data-en="Melon - Dill">Kavun - Dereotu</h3></div><p class="mi-desc" data-tr="Vodka, damla sakızı likörü, kavun, dereotu, anason, lemongrass, limon ekşisi" data-en="Vodka, mastic liqueur, melon, dill, anise, lemongrass, lemon sour">Vodka, damla sakızı likörü, kavun, dereotu, anason, lemongrass, limon ekşisi</p></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Satsuma - Nane" data-en="Satsuma - Mint">Satsuma - Nane</h3></div><p class="mi-desc" data-tr="Vodka, portakal likörü, limoncello, satsuma mix, nane, narenciye karışımı" data-en="Vodka, orange liqueur, limoncello, satsuma mix, mint, citrus blend">Vodka, portakal likörü, limoncello, satsuma mix, nane, narenciye karışımı</p></div>
+            <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name" data-tr="Çilek - Limon" data-en="Strawberry - Lemon">Çilek - Limon</h3></div><p class="mi-desc" data-tr="Tekila, ahududu likörü, aperol, çilek limon ekşisi" data-en="Tequila, raspberry liqueur, aperol, strawberry lemon sour">Tekila, ahududu likörü, aperol, çilek limon ekşisi</p></div>
+            <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name" data-tr="Greyfurt - Lemongrass" data-en="Grapefruit - Lemongrass">Greyfurt - Lemongrass</h3></div><p class="mi-desc" data-tr="Rom, portakal & şeftali likörü, ananas suyu, limon suyu, lemongrass, greyfurt, portakal, nane" data-en="Rum, orange & peach liqueur, pineapple juice, lemon juice, lemongrass, grapefruit, orange, mint">Rom, portakal & şeftali likörü, ananas suyu, limon suyu, lemongrass, greyfurt, portakal, nane</p></div>
+            <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name" data-tr="Egzotik Bergamot" data-en="Exotic Bergamot">Egzotik Bergamot</h3></div><p class="mi-desc" data-tr="Viski, safari, bumbu x, berraklaştırılmış bergamot, narenciye karışımı" data-en="Whiskey, safari, bumbu x, clarified bergamot, citrus blend">Viski, safari, bumbu x, berraklaştırılmış bergamot, narenciye karışımı</p></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-spritz">
+          <div class="menu-subhead-sub rv"><span data-tr="Spritzler" data-en="Spritzers">Spritzler</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Çilek - İncir" data-en="Strawberry - Fig">Çilek - İncir</h3></div><p class="mi-desc" data-tr="Cin, aperol, chambord, çilek, incir yaprağı, domates, prosecco" data-en="Gin, aperol, chambord, strawberry, fig leaf, tomato, prosecco">Cin, aperol, chambord, çilek, incir yaprağı, domates, prosecco</p></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name" data-tr="Hugo Spritz" data-en="Hugo Spritz">Hugo Spritz</h3></div><p class="mi-desc" data-tr="Mürver likörü, nane, prosecco, soda" data-en="Elderflower liqueur, mint, prosecco, soda">Mürver likörü, nane, prosecco, soda</p></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name" data-tr="Limoncello Spritz" data-en="Limoncello Spritz">Limoncello Spritz</h3></div><p class="mi-desc" data-tr="Cin, limoncello, prosecco, soda" data-en="Gin, limoncello, prosecco, soda">Cin, limoncello, prosecco, soda</p></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name" data-tr="Chambord Spritz" data-en="Chambord Spritz">Chambord Spritz</h3></div><p class="mi-desc" data-tr="Chambord, aperol, prosecco, soda" data-en="Chambord, aperol, prosecco, soda">Chambord, aperol, prosecco, soda</p></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-vodka">
+          <div class="menu-subhead-sub rv"><span data-tr="Vodkalar" data-en="Vodkas">Vodkalar</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Smirnoff</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Ketel One</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Ciroc</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">Grey Goose</h3></div></div>
+            <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">Belvedere</h3></div></div>
+            <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Beluga Vodka</h3></div></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-shot">
+          <div class="menu-subhead-sub rv"><span data-tr="Shotlar" data-en="Shots">Shotlar</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Olmeca Silver</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Baileys</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Skinos</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">Casamigos Mezcal</h3></div></div>
+            <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">Ciroc</h3></div></div>
+            <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Jameson</h3></div></div>
+            <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name">Grey Goose</h3></div></div>
+            <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name">Jagermeister</h3></div></div>
+            <div class="mi rv" data-d="8"><div class="mi-head"><h3 class="mi-name">Shaker Shot</h3></div></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-viski">
+          <div class="menu-subhead-sub rv"><span data-tr="Viskiler" data-en="Whiskies">Viskiler</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Red Label</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Black Label</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Blue Label</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">Lagavulin 8</h3></div></div>
+            <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">Gold Label</h3></div></div>
+            <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Chivas 18</h3></div></div>
+            <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name">Jameson</h3></div></div>
+            <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name">Monkey Shoulder</h3></div></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-gin">
+          <div class="menu-subhead-sub rv"><span data-tr="Ginler" data-en="Gins">Ginler</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Gordons</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Tanqueray</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Tanqueray No Ten</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">Bulldog</h3></div></div>
+            <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">Hendricks</h3></div></div>
+            <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Portofino Dry Gin</h3></div></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-sampanya">
+          <div class="menu-subhead-sub rv"><span data-tr="Şampanyalar & Köpüklüler" data-en="Champagne & Sparkling">Şampanyalar & Köpüklüler</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Kadeh Prosecco" data-en="Prosecco by Glass">Kadeh Prosecco</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Vino Frizzante Bottled</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Ruffino Prosecco Bottled</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">Dom Perignon</h3></div></div>
+          </div>
+        </div>
+        <div class="menu-group" id="sec-sarap">
+          <div class="menu-subhead-sub rv"><span data-tr="Kırmızı Kadeh" data-en="Red by Glass">Kırmızı Kadeh</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Kayra Vintage Merlot</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Allure Kalecik Karası</h3></div></div>
+          </div>
+          <div class="menu-subhead-sub rv"><span data-tr="Beyaz Kadeh" data-en="White by Glass">Beyaz Kadeh</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Allure Sauvignon Blanc</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">İsabey Sauvignon Blanc</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">7 Bilgeler Khilon Sauvignon Blanc</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">7 Bilgeler Anaxagoras Chardonnay</h3></div></div>
+          </div>
+          <div class="menu-subhead-sub rv"><span data-tr="Blush ve Rosé Kadeh" data-en="Blush &amp; Rosé by Glass">Blush ve Rosé Kadeh</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Allure Kalecik Karası</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Rosemingo</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Pinot Grigio Cielo</h3></div></div>
+          </div>
+          <div class="menu-subhead-sub rv"><span data-tr="Kırmızı Şişe" data-en="Red by Bottle">Kırmızı Şişe</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">Kayra Vintage Merlot</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">7 Bilgeler | PYTHAGORAS</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">7 Bilgeler | HİPOKRATES</h3></div></div>
+          </div>
+          <div class="menu-subhead-sub rv"><span data-tr="Beyaz Şişe" data-en="White by Bottle">Beyaz Şişe</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name">İsabey Sauvignon Blanc</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Allure Sauvignon Blanc</h3></div></div>
+            <div class="mi rv" data-d="2"><div class="mi-head"><h3 class="mi-name">Allure Crispy Chardonnay</h3></div></div>
+            <div class="mi rv" data-d="3"><div class="mi-head"><h3 class="mi-name">7 Bilgeler Khilon Sauvignon Blanc</h3></div></div>
+            <div class="mi rv" data-d="4"><div class="mi-head"><h3 class="mi-name">7 Bilgeler Anaxagoras Chardonnay</h3></div></div>
+            <div class="mi rv" data-d="5"><div class="mi-head"><h3 class="mi-name">Kayra Vintage Sauvignon Blanc</h3></div></div>
+            <div class="mi rv" data-d="6"><div class="mi-head"><h3 class="mi-name">Kayra Versus Chardonnay Viognier</h3></div></div>
+            <div class="mi rv" data-d="7"><div class="mi-head"><h3 class="mi-name">Arkas Bağları Consensus Chardonnay</h3></div></div>
+          </div>
+          <div class="menu-subhead-sub rv"><span data-tr="Blush ve Rosé Şişe" data-en="Blush &amp; Rosé by Bottle">Blush ve Rosé Şişe</span></div>
+          <div class="mgrid">
+            <div class="mi rv"><div class="mi-head"><h3 class="mi-name" data-tr="Allure Beyaz Kalecik Karası" data-en="Allure White Kalecik Karası">Allure Beyaz Kalecik Karası</h3></div></div>
+            <div class="mi rv" data-d="1"><div class="mi-head"><h3 class="mi-name">Pinot Grigio Cielo</h3></div></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -278,7 +515,7 @@
   <div class="gal-bgtxt" aria-hidden="true">galeri</div>
   <div class="ctr">
     <span class="sec-label rv" style="color:var(--teal)" data-tr="Atmosfer" data-en="Atmosphere">Atmosfer</span>
-    <h2 class="sec-h rv" data-d="1" style="color:var(--deep)"><em data-tr="yazz'da" data-en="At yazz">yazz'da</em> <span data-tr="Bir Gün" data-en="A Day">Bir Gün</span></h2>
+    <h2 class="sec-h rv" data-d="1" style="color:var(--deep)"><em data-tr="yaz'da" data-en="At yaz">yaz'da</em> <span data-tr="Bir Gün" data-en="A Day">Bir Gün</span></h2>
   </div>
   <div class="ctr" style="max-width:min(1380px,96vw)">
     <div class="gal-grid rv-s">
@@ -300,7 +537,7 @@
     <div class="exp-g">
       <div class="exp-vis rv-l">
         <div class="exp-img">
-          <img src="img/sarap-gece.png" alt="yazz — akşam deneyimi">
+          <img src="img/sarap-gece.png" alt="yaz — akşam deneyimi">
         </div>
         <div class="exp-badge2">
           <svg width="30" height="30" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 4L22.8 14.4L32 8.4L26 17.6L36.8 18L27.6 23.2L32 32L22.8 27.2L20 36L17.2 27.2L8 32L12.4 23.2L3.2 18L14 17.6L8 8.4L17.2 14.4Z" stroke="rgba(255,255,255,.85)" stroke-width="1.5" fill="none"/></svg>
@@ -308,24 +545,138 @@
         </div>
       </div>
       <div>
-        <span class="sec-label rv" data-tr="Neden yazz?" data-en="Why yazz?">Neden yazz?</span>
+        <span class="sec-label rv" data-tr="Neden yaz?" data-en="Why yaz?">Neden yaz?</span>
         <h2 class="sec-h rv" data-d="1"><span data-tr="Unutulmaz" data-en="An Unforgettable">Unutulmaz</span><br><em data-tr="Bir Deneyim" data-en="Experience">Bir Deneyim</em></h2>
         <div class="divider rv" data-d="2"></div>
         <p class="body-t rv" data-d="2" data-tr="Yıldızburnu'nun eşsiz konumunda, Ege'nin en taze lezzetlerini şarap kültürüyle harmanlayan bir sofra sunuyoruz. Her detay, her lezzet sizin için titizlikle hazırlandı." data-en="In Yıldızburnu's unique setting, we offer a table blending the freshest Aegean flavours with wine culture. Every detail prepared meticulously for you.">Yıldızburnu'nun eşsiz konumunda, Ege'nin en taze lezzetlerini şarap kültürüyle harmanlayan bir sofra sunuyoruz.</p>
         <div class="stats-g">
-          <div class="stat rv" data-d="1"><div class="stat-n">50+</div><div class="stat-l" data-tr="Şarap Çeşidi" data-en="Wine Varieties">Şarap Çeşidi</div></div>
-          <div class="stat rv" data-d="2"><div class="stat-n">12</div><div class="stat-l" data-tr="Yıllık Deneyim" data-en="Years Experience">Yıllık Deneyim</div></div>
-          <div class="stat rv" data-d="3"><div class="stat-n">∞</div><div class="stat-l" data-tr="Deniz Manzarası" data-en="Sea View">Deniz Manzarası</div></div>
-          <div class="stat rv" data-d="4"><div class="stat-n">4.9</div><div class="stat-l">Google</div></div>
+          <div class="stat rv" data-d="1"><div class="stat-n">12</div><div class="stat-l" data-tr="Yıllık Deneyim" data-en="Years Experience">Yıllık Deneyim</div></div>
+          <div class="stat rv" data-d="2"><div class="stat-n">∞</div><div class="stat-l" data-tr="Deniz Manzarası" data-en="Sea View">Deniz Manzarası</div></div>
+          <div class="stat rv" data-d="3"><div class="stat-n">4.5</div><div class="stat-l">Google</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- REVIEWS -->
+<section class="reviews-sec sec-pad" id="reviews">
+  <div class="reviews-bgtxt" aria-hidden="true">reviews</div>
+  <div class="ctr">
+    <span class="sec-label rv" data-tr="Misafir Yorumları" data-en="Guest Reviews">Misafir Yorumları</span>
+    <h2 class="sec-h rv" data-d="1">
+      <span data-tr="Gerçek" data-en="Real">Gerçek</span><br>
+      <em data-tr="Deneyimler" data-en="Experiences">Deneyimler</em>
+    </h2>
+    <div class="divider rv" data-d="2"></div>
+  </div>
+
+  <div class="ctr reviews-g">
+
+    <!-- Kart 1: Merve -->
+    <div class="rcard rv" data-d="1">
+      <div class="rcard-inner">
+        <img src="img/deniz-masa.png" alt="yaz — deniz kenarında kahve" class="rcard-img">
+        <div class="rcard-overlay"></div>
+        <div class="rcard-content">
+          <div class="rcard-header">
+            <div>
+              <div class="rcard-stars">★★★★★</div>
+              <p class="rcard-text" data-tr='"Yürüyüş yaparken oturup sıcak bir şeyler içelim derken burayı gördük. Sıcak atmosferi kendine çekiyor sizi."' data-en='"We stopped by for a warm drink on a walk and were drawn in by the warm atmosphere."'>"Yürüyüş yaparken oturup sıcak bir şeyler içelim derken burayı gördük. Sıcak atmosferi kendine çekiyor sizi."</p>
+            </div>
+            <a href="https://maps.app.goo.gl/yaz-yildizburnu" target="_blank" rel="noopener" class="rcard-link" aria-label="Google'da gör">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <div class="rcard-foot">
+            <div class="rcard-author">
+              <div>
+                <span class="rcard-name">Merve</span>
+              </div>
+              <span class="rcard-date" data-tr="8 ay önce" data-en="8 months ago">8 ay önce</span>
+            </div>
+            <div class="rcard-scores">
+              <span data-tr="Yiyecek 5/5" data-en="Food 5/5">Yiyecek 5/5</span>
+              <span data-tr="Hizmet 5/5" data-en="Service 5/5">Hizmet 5/5</span>
+              <span data-tr="Atmosfer 5/5" data-en="Atmosphere 5/5">Atmosfer 5/5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kart 2: Uğur -->
+    <div class="rcard rv" data-d="2">
+      <div class="rcard-inner">
+        <img src="img/sarap-gece.png" alt="yaz — akşam atmosferi" class="rcard-img">
+        <div class="rcard-overlay"></div>
+        <div class="rcard-content">
+          <div class="rcard-header">
+            <div>
+              <div class="rcard-stars">★★★★★</div>
+              <p class="rcard-text" data-tr='"Lezzetli yemekler, özenle hazırlanmış kokteyller, keyifli müzik ve eşsiz bir gün batımı… Deniz kenarında olmanın hakkını veren harika bir mekan."' data-en='"Delicious food, carefully crafted cocktails, great music and a unique sunset… A wonderful place that does justice to being by the sea."'>"Lezzetli yemekler, özenle hazırlanmış kokteyller, keyifli müzik ve eşsiz bir gün batımı…"</p>
+            </div>
+            <a href="https://maps.app.goo.gl/yaz-yildizburnu" target="_blank" rel="noopener" class="rcard-link" aria-label="Google'da gör">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <div class="rcard-foot">
+            <div class="rcard-author">
+              <div>
+                <span class="rcard-name">Uğur</span>
+                <span class="rcard-badge" data-tr="2 yorum · 3 fotoğraf" data-en="2 reviews · 3 photos">2 yorum · 3 fotoğraf</span>
+              </div>
+              <span class="rcard-date" data-tr="11 ay önce" data-en="11 months ago">11 ay önce</span>
+            </div>
+            <div class="rcard-scores">
+              <span data-tr="Yiyecek 5/5" data-en="Food 5/5">Yiyecek 5/5</span>
+              <span data-tr="Hizmet 5/5" data-en="Service 5/5">Hizmet 5/5</span>
+              <span data-tr="Atmosfer 5/5" data-en="Atmosphere 5/5">Atmosfer 5/5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kart 3: Büşra Sevben -->
+    <div class="rcard rv" data-d="3">
+      <div class="rcard-inner">
+        <img src="img/ic-mekan.png" alt="yaz — iç mekan" class="rcard-img">
+        <div class="rcard-overlay"></div>
+        <div class="rcard-content">
+          <div class="rcard-header">
+            <div>
+              <div class="rcard-stars">★★★★★</div>
+              <p class="rcard-text" data-tr='"Tesadüfen oturduğumuz bir mekan çevresindekilere göre aşırı iyi ve hoşgörülü bir tavır vardı. Her şey harikaydı."' data-en='"A place we stumbled upon — incredibly good and welcoming compared to the surroundings. Everything was wonderful."'>"Tesadüfen oturduğumuz bir mekan çevresindekilere göre aşırı iyi ve hoşgörülü bir tavır vardı."</p>
+            </div>
+            <a href="https://maps.app.goo.gl/yaz-yildizburnu" target="_blank" rel="noopener" class="rcard-link" aria-label="Google'da gör">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+          </div>
+          <div class="rcard-foot">
+            <div class="rcard-author">
+              <div>
+                <span class="rcard-name">Büşra Sevben</span>
+                <span class="rcard-badge" data-tr="Yerel Rehber · 18 yorum" data-en="Local Guide · 18 reviews">Yerel Rehber · 18 yorum</span>
+              </div>
+              <span class="rcard-date" data-tr="6 ay önce" data-en="6 months ago">6 ay önce</span>
+            </div>
+            <div class="rcard-scores">
+              <span data-tr="Yiyecek 5/5" data-en="Food 5/5">Yiyecek 5/5</span>
+              <span data-tr="Hizmet 5/5" data-en="Service 5/5">Hizmet 5/5</span>
+              <span data-tr="Atmosfer 5/5" data-en="Atmosphere 5/5">Atmosfer 5/5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact-sec sec-pad" id="contact">
-  <div class="contact-bgtxt" aria-hidden="true">yazz</div>
+  <div class="contact-bgtxt" aria-hidden="true">yaz</div>
   <div class="ctr">
     <div style="text-align:center;margin-bottom:clamp(44px,6vw,68px)">
       <span class="sec-label rv" style="color:rgba(36,137,171,.8)" data-tr="Bize Ulaşın" data-en="Get in Touch">Bize Ulaşın</span>
@@ -349,47 +700,13 @@
           <div class="ci-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
           <div><div class="ci-l">E-posta</div><div class="ci-v"><a href="mailto:info@yazzrestaurant.com">info@yazzrestaurant.com</a></div></div>
         </div>
-        <div id="yazz-map"></div>
+        <div id="yaz-map"></div>
         <a class="apple-maps-btn" href="https://maps.apple.com/?q=Yaz+Restaurant&ll=38.312053,26.357127&z=16" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1C3.686 1 1 3.686 1 7s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm.6 9.2H6.4V6.4h1.2v3.8zm0-5H6.4V4h1.2v1.2z" fill="currentColor"/></svg>
           <span data-tr="Apple Maps'te Aç" data-en="Open in Apple Maps">Apple Maps'te Aç</span>
         </a>
       </div>
 
-      <div class="rform rv-r">
-        <h3 class="ft" data-tr="Rezervasyon" data-en="Reservation">Rezervasyon</h3>
-        <p class="fsub-text" data-tr="En az 24 saat öncesinden rezervasyon yapmanızı öneririz." data-en="We recommend booking at least 24 hours in advance.">En az 24 saat öncesinden rezervasyon yapmanızı öneririz.</p>
-        <form id="resForm" novalidate>
-          <div class="frow">
-            <div class="fg"><label class="fl" for="fn" data-tr="Adınız" data-en="First Name">Adınız</label><input type="text" id="fn" class="fi" placeholder="Ahmet" autocomplete="given-name" required></div>
-            <div class="fg"><label class="fl" for="ln" data-tr="Soyadınız" data-en="Last Name">Soyadınız</label><input type="text" id="ln" class="fi" placeholder="Yılmaz" autocomplete="family-name" required></div>
-          </div>
-          <div class="frow">
-            <div class="fg"><label class="fl" for="ph" data-tr="Telefon" data-en="Phone">Telefon</label><input type="tel" id="ph" class="fi" placeholder="+90 532 000 00 00" autocomplete="tel" required></div>
-            <div class="fg"><label class="fl" for="gs" data-tr="Kişi" data-en="Guests">Kişi</label>
-              <select id="gs" class="fsel" required>
-                <option value="" data-tr="Seçin" data-en="Select">Seçin</option>
-                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option value="7+">7+</option>
-              </select>
-            </div>
-          </div>
-          <div class="frow">
-            <div class="fg"><label class="fl" for="dt" data-tr="Tarih" data-en="Date">Tarih</label><input type="date" id="dt" class="fi" required></div>
-            <div class="fg"><label class="fl" for="tm" data-tr="Saat" data-en="Time">Saat</label>
-              <select id="tm" class="fsel" required>
-                <option value="" data-tr="Seçin" data-en="Select">Seçin</option>
-                <option>12:00</option><option>13:00</option><option>14:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option>
-              </select>
-            </div>
-          </div>
-          <div class="fg"><label class="fl" for="nt" data-tr="Özel İstek" data-en="Special Request">Özel İstek</label><textarea id="nt" class="fta" placeholder="Doğum günü, alerji bilgisi..."></textarea></div>
-          <button type="submit" class="fsub-btn" data-tr="Rezervasyon Gönder" data-en="Send Reservation">Rezervasyon Gönder</button>
-          <a href="https://wa.me/905079306344?text=Merhaba%2C%20rezervasyon%20yapmak%20istiyorum." class="wa-btn" target="_blank" rel="noopener noreferrer">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span data-tr="WhatsApp ile Rezervasyon" data-en="Reserve via WhatsApp">WhatsApp ile Rezervasyon</span>
-          </a>
-        </form>
-      </div>
     </div>
   </div>
 </section>
@@ -399,7 +716,7 @@
   <div class="ctr">
     <div class="footer-g">
       <div>
-        <div class="fn">yazz</div>
+        <div class="fn">yaz</div>
         <div class="fs-sub">Yıldızburnu · Çeşme · İzmir</div>
         <p class="fdesc" data-tr="Ege'nin kristal sularında eşsiz lezzetler ve anılar." data-en="Unforgettable flavours and memories on the crystal waters of the Aegean.">Ege'nin kristal sularında eşsiz lezzetler ve anılar.</p>
         <div class="socials">
@@ -435,7 +752,7 @@
       </div>
     </div>
     <div class="fbot">
-      <p class="fcopy">© 2025 yazz. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p>
+      <p class="fcopy">© 2025 yaz. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></p>
       <p class="fcopy">Yıldızburnu · Ilıca · Çeşme · İzmir</p>
     </div>
   </div>
@@ -446,7 +763,9 @@
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+<script src="js/mountain-scene.js"></script>
+<script src="js/review-cards.js"></script>
 <script src="js/main.js" defer></script>
 <script src="js/interactions.js" defer></script>
 <script src="js/mobile.js" defer></script>
@@ -454,12 +773,12 @@
 <!-- Harita — Apple Maps tarzı -->
 <script>
 (function () {
-  var el = document.getElementById('yazz-map');
+  var el = document.getElementById('yaz-map');
   if (!el || typeof L === 'undefined') return;
 
   var lat = 38.312053, lng = 26.357127;
 
-  var map = L.map('yazz-map', {
+  var map = L.map('yaz-map', {
     center: [lat, lng],
     zoom: 16,
     zoomControl: false,
@@ -491,10 +810,10 @@
     .addTo(map)
     .bindPopup(
       '<div class="amap-popup">' +
-        '<strong>yazz</strong>' +
+        '<strong>yaz</strong>' +
         '<span>Yıldızburnu · Çeşme</span>' +
       '</div>',
-      { className: 'yazz-popup', maxWidth: 160, closeButton: false }
+      { className: 'yaz-popup', maxWidth: 160, closeButton: false }
     )
     .openPopup();
 
@@ -536,7 +855,7 @@
 <script type="module">
   import { createElement } from 'https://esm.sh/react@18';
   import { createRoot }    from 'https://esm.sh/react-dom@18/client';
-  import { Warp }          from 'https://esm.sh/@paper-design/shaders-react@latest';
+  import { Warp }          from 'https://esm.sh/@paper-design/shaders-react@1.0.0';
 
   var mount = document.getElementById('shader-mount');
   if (mount) {
