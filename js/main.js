@@ -1,5 +1,7 @@
 'use strict';
 
+window.scrollTo({ top: 0, behavior: 'instant' });
+
 // 1. NAV SCROLL + HERO REVEAL + HERO OUT/IN
 const nav  = document.getElementById('nav');
 const hero = document.getElementById('home');

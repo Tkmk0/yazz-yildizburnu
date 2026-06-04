@@ -79,3 +79,21 @@
   .feat-t strong { font-size: .74rem; }
   .feat-t span   { font-size: .68rem; }
 }
+
+/* feat kartları — hover:none (dokunmatik) */
+@media (hover: none) {
+  .feat:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+    background: var(--beige);
+  }
+  .feat:hover .feat-ic {
+    background: rgba(0, 91, 127, .08);
+    transform: none;
+  }
+  .feat:active {
+    background: var(--beige2);
+    transform: scale(.98);
+  }
+}

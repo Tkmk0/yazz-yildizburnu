@@ -375,23 +375,40 @@
 .feat {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
+  gap: 14px;
+  padding: 18px;
   background: var(--beige);
-  border-radius: 8px;
-  transition: background .3s;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition: background var(--dur-base), transform var(--dur-base) var(--ease),
+              box-shadow var(--dur-base), border-color var(--dur-base);
+  cursor: default;
 }
-.feat:hover { background: var(--beige2); }
+.feat:hover {
+  background: var(--neutral);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(0, 91, 127, .18);
+}
+.feat:hover .feat-ic {
+  background: rgba(0, 91, 127, .15);
+  transform: scale(1.1);
+}
 .feat-ic {
-  width: 32px;
-  height: 32px;
-  background: rgba(0, 91, 127, .1);
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 91, 127, .08);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: .9rem;
+  color: var(--primary);
+  transition: background var(--dur-base), transform var(--dur-base) var(--ease);
+}
+.feat-ic svg {
+  width: 18px;
+  height: 18px;
 }
 .feat-t strong {
   display: block;
