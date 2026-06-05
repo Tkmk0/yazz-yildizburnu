@@ -62,7 +62,7 @@ document.querySelectorAll('.mtab').forEach(tab => {
     panel.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => {
       el.classList.remove('on');
       setTimeout(() => {
-        if (window.revealObs) window.revealObs.observe(el);
+        if (window.revealObs) { window.revealObs.unobserve(el); window.revealObs.observe(el); }
       }, 40);
     });
   });
@@ -87,7 +87,9 @@ document.querySelectorAll('.snav[data-scroll]').forEach(btn => {
     }
     target.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el => {
       el.classList.remove('on');
-      setTimeout(() => { if (window.revealObs) window.revealObs.observe(el); }, 40);
+      setTimeout(() => {
+        if (window.revealObs) { window.revealObs.unobserve(el); window.revealObs.observe(el); }
+      }, 40);
     });
   });
 });
